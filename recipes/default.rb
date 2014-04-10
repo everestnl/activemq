@@ -29,10 +29,10 @@ directory node['activemq']['home'] do
 end
 
 unless File.exists?("#{activemq_home}/bin/activemq")
-  remote_file "#{tmp}/apache-activemq-#{version}-bin.tar.gz" do
-    source "#{mirror}/activemq/apache-activemq/#{version}/apache-activemq-#{version}-bin.tar.gz"
-    mode   '0644'
-  end
+  cookbook_file "apache-activemq-5.8.0-bin.tar.gz" do
+		path "#{tmp}/apache-activemq-#{version}-bin.tar.gz"
+		source "apache-activemq-5.8.0-bin.tar.gz"
+  end	
 
   execute "tar zxf #{tmp}/apache-activemq-#{version}-bin.tar.gz" do
     cwd node['activemq']['home']
